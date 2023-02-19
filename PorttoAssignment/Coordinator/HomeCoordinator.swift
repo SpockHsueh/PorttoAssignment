@@ -17,7 +17,7 @@ class HomeCoordinator: Coordinator {
     var navigationController: UINavigationController?
     
     func start() {
-        var vc: UIViewController & Coordinating = HomeVC()
+        var vc: UIViewController & Coordinating = ListVC()
         vc.coordinator = self
         navigationController?.setViewControllers([vc], animated: false)
     }
