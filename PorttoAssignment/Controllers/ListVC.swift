@@ -13,10 +13,19 @@ class ListVC: UIViewController, Coordinating {
     // MARK: - Properties
     var coordinator: Coordinator?
     private let viewModel = ListViewModel()
+    private var cellData: [Assets] = []
     
     // MARK: - UI Component
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView()
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: screenWidth / 2 - 10, height: 150)
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         collectionView.delegate = self
@@ -25,7 +34,7 @@ class ListVC: UIViewController, Coordinating {
     }()
     
     lazy var amountLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "$100"
         label.font = UIFont.systemFont(ofSize: 40)
@@ -37,16 +46,17 @@ class ListVC: UIViewController, Coordinating {
         super.viewDidLoad()
         view.backgroundColor = .red
         setupConstraints()
+        setupBinders()
+        viewModel.getList()
     }
     
     private func setupConstraints() {
         view.addSubview(amountLabel)
         view.addSubview(collectionView)
-        
         NSLayoutConstraint.activate([
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             amountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             amountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -54,26 +64,38 @@ class ListVC: UIViewController, Coordinating {
             collectionView.topAnchor.constraint(equalTo: amountLabel.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-
+    }
+    
+    private func setupBinders() {
+        viewModel.listValue.bind { [weak self] listValue in
+            if !listValue.isEmpty {
+                self?.cellData.append(contentsOf: listValue)
+                self?.collectionView.reloadData()
+            }
+        }
         
+        viewModel.getListErrorDescription.bind { error in
+            // TODO pop up error
+            print(error)
+        }
     }
 }
 
 extension ListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        self.cellData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let rowViewModel =
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.identifier, for: indexPath)
-        if let cell = cell as? CellConfigurable {
-            cell.setup(viewModel: )
+        let data = cellData[indexPath.row]
+        let cellDataModel = ListCellDataModel(title: data.name, image: AsyncImage(url: data.imageUrl))
+        if let cell = cell as? CellConfigurable
+        {
+            cell.setup(dataModel: cellDataModel)
         }
         cell.layoutIfNeeded()
         return cell
     }
-    
-    
     
 }
