@@ -49,6 +49,8 @@ struct GetListService {
                 return
             }
             
+            // TODO
+            // handle status 200 but no data
             guard let data = data else {
                 DispatchQueue.main.async {
                     completion(.failure(GetListError.missingData))

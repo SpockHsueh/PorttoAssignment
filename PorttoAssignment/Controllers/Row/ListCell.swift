@@ -5,6 +5,7 @@
 //  Created by 薛宇振 on 2023/2/19.
 //
 
+import WebKit
 import UIKit
 
 class ListCell: UICollectionViewCell, CellConfigurable {
@@ -13,7 +14,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     
     static let identifier = "HomeCell"
     private var dataModel: ListCellDataModel?
-        
+    
     // MARK: - UI Component
     
     lazy var imageView: UIImageView = {
@@ -24,8 +25,18 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         return imageView
     }()
     
+    lazy var webView: WKWebView = {
+        let webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.scrollView.isScrollEnabled = false
+        webView.contentMode = .scaleAspectFit
+        webView.backgroundColor = .clear
+        webView.isHidden = true
+        return webView
+    }()
+    
     lazy var nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -51,10 +62,20 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         }
         self.dataModel = dataModel
         self.nameLabel.text = dataModel.name
+        
         dataModel.image.startDownload()
         
-        dataModel.image.completeDownload = { [weak self] image in
-            self?.imageView.image = image
+        dataModel.image.completeDownload = { [weak self] (image, url) in
+            
+            if (image == nil) {
+                self?.webView.isHidden = false
+                self?.imageView.isHidden = true
+                self?.webView.load(URLRequest(url: url))
+            } else {
+                self?.imageView.isHidden = false
+                self?.webView.isHidden = true
+                self?.imageView.image = image
+            }
         }
     }
     
@@ -63,6 +84,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     private func setupConstraints() {
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
+        contentView.addSubview(webView)
         
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
@@ -71,10 +93,22 @@ class ListCell: UICollectionViewCell, CellConfigurable {
             imageView.heightAnchor.constraint(equalToConstant: 100),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
+            webView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            webView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            webView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            webView.heightAnchor.constraint(equalToConstant: 100),
+            webView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dataModel?.image.completeDownload = nil
+    }
+        
 }

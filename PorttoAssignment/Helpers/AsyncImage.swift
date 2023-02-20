@@ -18,7 +18,7 @@ class AsyncImage {
     var image: UIImage {
         return self.imageStore ?? placeholder
     }
-    var completeDownload: ((UIImage?) -> Void)?
+    var completeDownload: ((UIImage?, URL) -> Void)?
 
     init(url: String,
          placeholderImage: UIImage = #imageLiteral(resourceName: "placeholderImage") ,
@@ -30,15 +30,15 @@ class AsyncImage {
     
     func startDownload() {
         if imageStore != nil {
-            completeDownload?(image)
+            completeDownload?(image, url)
         } else {
             if isDownloading { return }
             isDownloading = true
-            imageDownloadHelper.download(url: url, completion: { [weak self] (image, response, error) in
+            imageDownloadHelper.download(url: url, completion: { [weak self] (image, response, error, url) in
                 self?.imageStore = image
                 self?.isDownloading = false
                 DispatchQueue.main.async {
-                    self?.completeDownload?(image)
+                    self?.completeDownload?(image, url)
                 }
             })
         }

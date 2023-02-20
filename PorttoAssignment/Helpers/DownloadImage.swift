@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol ImageDownloadHelperProtocol {
-    func download(url: URL, completion: @escaping (UIImage?, URLResponse?, Error?) -> ())
+    func download(url: URL, completion: @escaping (UIImage?, URLResponse?, Error?, URL) -> ())
 }
 
 class DownloadImage: ImageDownloadHelperProtocol {
@@ -20,12 +20,12 @@ class DownloadImage: ImageDownloadHelperProtocol {
         return DownloadImage()
     }()
     
-    func download(url: URL, completion: @escaping (UIImage?, URLResponse?, Error?) -> ()) {
+    func download(url: URL, completion: @escaping (UIImage?, URLResponse?, Error?, URL) -> ()) {
         urlSession.dataTask(with: url) { data, response, error in
             if let data = data {
-                completion(UIImage(data: data), response, error)
+                completion(UIImage(data: data), response, error, url)
             } else {
-                completion(nil, response, error)
+                completion(nil, response, error, url)
             }
         }.resume()
     }
