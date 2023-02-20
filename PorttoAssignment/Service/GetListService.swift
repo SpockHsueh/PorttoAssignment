@@ -36,13 +36,10 @@ struct GetListService {
             }
             return
         }
-        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("vqYuKPOkLQLYHhk4QTGsGKFwATT4mBIGREI2m8eD", forHTTPHeaderField: "X-Parse-Application-Id")
         
-        print(request)
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let error = error {

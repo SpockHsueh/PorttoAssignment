@@ -12,10 +12,14 @@ class ListViewModel {
     var listValue: ObserableObject<[Assets]> = ObserableObject([])
     var getListErrorDescription: ObserableObject<String?> = ObserableObject(nil)
     var isLoading: ObserableObject<Bool> = ObserableObject(false)
+    var currentPage: Int = 0
     
-    func getList(offset: Int = 0, linit: Int = 20) {
+    func getList(offset: Int? = nil, linit: Int = 20) {
         isLoading.value = true
-        GetListService.getList(offset: offset, limit: linit) { [weak self] listRes in
+        if let offset = offset {
+            currentPage = offset
+        }
+        GetListService.getList(offset: currentPage, limit: linit) { [weak self] listRes in
             switch listRes {
             case .failure(let error):
                 var errorMessage = ""
@@ -30,6 +34,7 @@ class ListViewModel {
                 self?.listValue.value = value.assets
             }
             self?.isLoading.value = false
+            self?.currentPage += 1
         }
     }
 }

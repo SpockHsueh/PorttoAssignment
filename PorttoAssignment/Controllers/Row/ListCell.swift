@@ -28,6 +28,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     

@@ -129,4 +129,13 @@ extension ListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (loadingIdicator.isAnimating) {
+            return
+        }
+        if indexPath.row == cellData.count - 1 {
+            viewModel.getList()
+        }
+    }
+    
 }
