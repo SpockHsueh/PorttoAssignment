@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		6A2B282E29A2615200891657 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B282D29A2615200891657 /* ListCell.swift */; };
 		6A2B283029A267AE00891657 /* RowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B282F29A267AE00891657 /* RowViewModel.swift */; };
-		6A2B283329A2681200891657 /* ListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283229A2681200891657 /* ListCellViewModel.swift */; };
 		6A2B283529A26C2E00891657 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283429A26C2E00891657 /* ListViewModel.swift */; };
 		6A2B283829A26D6900891657 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283729A26D6900891657 /* ListModel.swift */; };
+		6A2B283B29A27B6C00891657 /* GetListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283A29A27B6C00891657 /* GetListService.swift */; };
+		6A2B283D29A2EE3800891657 /* ObserableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283C29A2EE3800891657 /* ObserableObject.swift */; };
+		6A2B284029A3571200891657 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B283F29A3571200891657 /* AsyncImage.swift */; };
+		6A2B284229A3573D00891657 /* DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B284129A3573D00891657 /* DownloadImage.swift */; };
+		6A2B284429A3639D00891657 /* ListCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B284329A3639D00891657 /* ListCellDataModel.swift */; };
 		6AC3130929A25B2900EE7BCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130829A25B2900EE7BCA /* AppDelegate.swift */; };
 		6AC3130B29A25B2900EE7BCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */; };
 		6AC3130D29A25B2900EE7BCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130C29A25B2900EE7BCA /* ViewController.swift */; };
@@ -26,9 +30,13 @@
 /* Begin PBXFileReference section */
 		6A2B282D29A2615200891657 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		6A2B282F29A267AE00891657 /* RowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViewModel.swift; sourceTree = "<group>"; };
-		6A2B283229A2681200891657 /* ListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellViewModel.swift; sourceTree = "<group>"; };
 		6A2B283429A26C2E00891657 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		6A2B283729A26D6900891657 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		6A2B283A29A27B6C00891657 /* GetListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListService.swift; sourceTree = "<group>"; };
+		6A2B283C29A2EE3800891657 /* ObserableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserableObject.swift; sourceTree = "<group>"; };
+		6A2B283F29A3571200891657 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		6A2B284129A3573D00891657 /* DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImage.swift; sourceTree = "<group>"; };
+		6A2B284329A3639D00891657 /* ListCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellDataModel.swift; sourceTree = "<group>"; };
 		6AC3130529A25B2900EE7BCA /* PorttoAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PorttoAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC3130829A25B2900EE7BCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				6A2B282D29A2615200891657 /* ListCell.swift */,
+				6A2B284329A3639D00891657 /* ListCellDataModel.swift */,
 			);
 			path = Row;
 			sourceTree = "<group>";
@@ -64,7 +73,6 @@
 		6A2B283129A2680500891657 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				6A2B283229A2681200891657 /* ListCellViewModel.swift */,
 				6A2B283429A26C2E00891657 /* ListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -76,6 +84,23 @@
 				6A2B283729A26D6900891657 /* ListModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6A2B283929A27B5E00891657 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B283A29A27B6C00891657 /* GetListService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6A2B283E29A356FF00891657 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B283F29A3571200891657 /* AsyncImage.swift */,
+				6A2B284129A3573D00891657 /* DownloadImage.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		6AC312FC29A25B2900EE7BCA = {
@@ -97,6 +122,8 @@
 		6AC3130729A25B2900EE7BCA /* PorttoAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				6A2B283E29A356FF00891657 /* Helpers */,
+				6A2B283929A27B5E00891657 /* Service */,
 				6A2B283629A26D5600891657 /* Model */,
 				6A2B283129A2680500891657 /* ViewModels */,
 				6AC3131F29A25C9F00EE7BCA /* Coordinator */,
@@ -104,6 +131,7 @@
 				6AC3130829A25B2900EE7BCA /* AppDelegate.swift */,
 				6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */,
 				6A2B282F29A267AE00891657 /* RowViewModel.swift */,
+				6A2B283C29A2EE3800891657 /* ObserableObject.swift */,
 				6AC3130C29A25B2900EE7BCA /* ViewController.swift */,
 				6AC3130E29A25B2900EE7BCA /* Main.storyboard */,
 				6AC3131129A25B2D00EE7BCA /* Assets.xcassets */,
@@ -202,16 +230,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A2B284029A3571200891657 /* AsyncImage.swift in Sources */,
 				6A2B283529A26C2E00891657 /* ListViewModel.swift in Sources */,
-				6A2B283329A2681200891657 /* ListCellViewModel.swift in Sources */,
 				6AC3130D29A25B2900EE7BCA /* ViewController.swift in Sources */,
 				6A2B283029A267AE00891657 /* RowViewModel.swift in Sources */,
 				6A2B282E29A2615200891657 /* ListCell.swift in Sources */,
 				6AC3131E29A25C9300EE7BCA /* ListVC.swift in Sources */,
 				6AC3132129A25CA900EE7BCA /* Coordinator.swift in Sources */,
+				6A2B283D29A2EE3800891657 /* ObserableObject.swift in Sources */,
+				6A2B284429A3639D00891657 /* ListCellDataModel.swift in Sources */,
 				6AC3130929A25B2900EE7BCA /* AppDelegate.swift in Sources */,
+				6A2B283B29A27B6C00891657 /* GetListService.swift in Sources */,
 				6AC3130B29A25B2900EE7BCA /* SceneDelegate.swift in Sources */,
 				6A2B283829A26D6900891657 /* ListModel.swift in Sources */,
+				6A2B284229A3573D00891657 /* DownloadImage.swift in Sources */,
 				6AC3132329A25CFC00EE7BCA /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
