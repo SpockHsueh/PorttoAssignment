@@ -9,9 +9,13 @@ import UIKit
 
 class ListCell: UICollectionViewCell, CellConfigurable {
     
+    // MARK: - Properties
+    
     static let identifier = "HomeCell"
     private var dataModel: ListCellDataModel?
         
+    // MARK: - UI Component
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +31,8 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         return label
     }()
     
+    // MARK: - Lift Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupConstraints()
@@ -35,6 +41,8 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Internal Func
     
     func setup(dataModel: RowViewModel) {
         guard let dataModel = dataModel as? ListCellDataModel else {
@@ -48,6 +56,8 @@ class ListCell: UICollectionViewCell, CellConfigurable {
             self?.imageView.image = image
         }
     }
+    
+    // MARK: - private Func
     
     private func setupConstraints() {
         contentView.addSubview(imageView)

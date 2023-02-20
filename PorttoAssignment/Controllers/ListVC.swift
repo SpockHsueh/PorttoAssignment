@@ -11,11 +11,13 @@ import UIKit
 class ListVC: UIViewController, Coordinating {
     
     // MARK: - Properties
+    
     var coordinator: Coordinator?
     private let viewModel = ListViewModel()
     private var cellData: [Assets] = []
     
     // MARK: - UI Component
+    
     lazy var collectionView: UICollectionView = {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -42,6 +44,15 @@ class ListVC: UIViewController, Coordinating {
         return label
     }()
     
+    lazy var loadingIdicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    // MARK: - Lift Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -50,10 +61,16 @@ class ListVC: UIViewController, Coordinating {
         viewModel.getList()
     }
     
+    // MARK: - Private Func
+    
     private func setupConstraints() {
         view.addSubview(amountLabel)
         view.addSubview(collectionView)
+        view.addSubview(loadingIdicator)
         NSLayoutConstraint.activate([
+            loadingIdicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIdicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             amountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
@@ -66,7 +83,20 @@ class ListVC: UIViewController, Coordinating {
         ])
     }
     
-    private func setupBinders() {
+    private func setLoading(isLoading: Bool) {
+        if isLoading {
+            self.loadingIdicator.startAnimating()
+        } else {
+            self.loadingIdicator.stopAnimating()
+        }
+    }
+    
+    private func setupBinders() {                
+        
+        viewModel.isLoading.bind { [weak self] isLoading in
+            self?.setLoading(isLoading: isLoading)
+        }
+        
         viewModel.listValue.bind { [weak self] listValue in
             if !listValue.isEmpty {
                 self?.cellData.append(contentsOf: listValue)
@@ -81,6 +111,7 @@ class ListVC: UIViewController, Coordinating {
     }
 }
 
+// MARK: - Extension
 extension ListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.cellData.count

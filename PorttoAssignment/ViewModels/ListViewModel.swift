@@ -11,8 +11,10 @@ class ListViewModel {
     
     var listValue: ObserableObject<[Assets]> = ObserableObject([])
     var getListErrorDescription: ObserableObject<String?> = ObserableObject(nil)
+    var isLoading: ObserableObject<Bool> = ObserableObject(false)
     
     func getList(offset: Int = 0, linit: Int = 20) {
+        isLoading.value = true
         GetListService.getList(offset: offset, limit: linit) { [weak self] listRes in
             switch listRes {
             case .failure(let error):
@@ -27,6 +29,7 @@ class ListViewModel {
             case .success(let value):
                 self?.listValue.value = value.assets
             }
+            self?.isLoading.value = false
         }
     }
 }
