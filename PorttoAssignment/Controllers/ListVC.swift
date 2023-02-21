@@ -55,7 +55,8 @@ class ListVC: UIViewController, Coordinating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        title = "List"
+        view.backgroundColor = .white
         setupConstraints()
         setupBinders()
         viewModel.getList()
@@ -100,13 +101,12 @@ class ListVC: UIViewController, Coordinating {
         viewModel.listValue.bind { [weak self] listValue in
             if !listValue.isEmpty {
                 self?.cellData.append(contentsOf: listValue)
-                self?.collectionView.reloadData()
+                self?.collectionView.reloadData()                
             }
         }
         
         viewModel.getListErrorDescription.bind { error in
-            // TODO pop up error
-            print(error)
+            print("get list error:", error?.debugDescription)
         }
     }
 }
@@ -136,6 +136,11 @@ extension ListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         if indexPath.row == cellData.count - 1 {
             viewModel.getList()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let event = ListEvent.navigationToCollection(assets: cellData[indexPath.row])
+        coordinator?.eventOccurred(with: event)
     }
     
 }

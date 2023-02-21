@@ -66,7 +66,6 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         dataModel.image.startDownload()
         
         dataModel.image.completeDownload = { [weak self] (image, url) in
-            
             if (image == nil) {
                 self?.webView.isHidden = false
                 self?.imageView.isHidden = true
@@ -102,7 +101,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     
