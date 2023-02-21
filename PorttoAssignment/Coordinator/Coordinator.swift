@@ -9,8 +9,15 @@ import Foundation
 import UIKit
 
 // TODO
-protocol Event {
-    
+protocol Event {}
+
+enum ListEvent: Event {
+    case navigationToCollection(assets: Assets)
+}
+
+enum CollectionEvent: Event {
+    case navigationToList
+    case navigationToWebView(url: URL)
 }
 
 protocol Coordinator: AnyObject {

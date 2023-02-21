@@ -23,7 +23,19 @@ class HomeCoordinator: Coordinator {
     }
     
     func eventOccurred(with type: Event) {
+        guard let type = type as? ListEvent else {
+            return
+        }
         
+        switch type {
+        case .navigationToCollection(let assets):
+            let collectionCoordinator = CollectionCoordinator()
+            collectionCoordinator.parentCoordinator = self
+            collectionCoordinator.assets = assets
+            collectionCoordinator.navigationController = navigationController
+            children.append(collectionCoordinator)
+            collectionCoordinator.start()
+        }
     }
     
     deinit {

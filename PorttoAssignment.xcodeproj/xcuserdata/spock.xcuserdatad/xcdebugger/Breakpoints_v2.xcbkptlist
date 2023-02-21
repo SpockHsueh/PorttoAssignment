@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9242910C-0D8A-4D50-BD90-7C0997DAC6AC"
+            uuid = "899CE42D-7561-411E-A656-CA5C0FCD2722"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PorttoAssignment/Controllers/Row/ListCell.swift"
+            filePath = "PorttoAssignment/Controllers/CollectionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "setup(dataModel:)"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "setupBinders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A689ED69-0DFA-46DD-B0AF-D4F835A10C11"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PorttoAssignment/Controllers/CollectionVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "resizeImage(image:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
