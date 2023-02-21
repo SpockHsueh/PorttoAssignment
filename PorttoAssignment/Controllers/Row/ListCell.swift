@@ -40,6 +40,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
