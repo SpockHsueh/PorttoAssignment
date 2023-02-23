@@ -13,16 +13,23 @@ class ListViewModel {
     var getListErrorDescription: ObserableObject<String?> = ObserableObject(nil)
     var isLoading: ObserableObject<Bool> = ObserableObject(false)
     private var currentPage: Int = 0
+    private let getListService: GetListServiceProtocol.Type
+    private let we3Service: Web3ServiceProtocol.Type
+    
+    init(getListService: GetListServiceProtocol.Type, we3Service: Web3ServiceProtocol.Type) {
+        self.getListService = getListService
+        self.we3Service = we3Service
+    }
     
     func getList(offset: Int? = nil, linit: Int = 20) {
-        
+                
         isLoading.value = true
         
         if let offset = offset {
             currentPage = offset
         }
         
-        GetListService.getList(offset: currentPage, limit: linit) { [weak self] listRes in
+        getListService.getList(offset: currentPage, limit: linit) { [weak self] listRes in
             switch listRes {
             case .failure(let error):
                 var errorMessage = ""
@@ -42,6 +49,6 @@ class ListViewModel {
     }
     
     func getBalence() async -> String? {
-        return await Web3Service.getAddressBalance()
+        return await we3Service.getAddressBalance()
     }
 }

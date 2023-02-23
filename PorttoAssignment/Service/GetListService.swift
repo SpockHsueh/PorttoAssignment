@@ -7,29 +7,35 @@
 
 import Foundation
 
-struct GetListService {
+enum GetListError: Error {
+    case invalidURL
+    case missingData
+    case unexpectedError(error: String)
+}
+
+protocol GetListServiceProtocol {
+    static func getList(offset: Int,
+                limit:Int,
+                completion: @escaping (Result<ListModel, GetListError>) -> Void)
+}
+
+struct GetListService: GetListServiceProtocol {
     
-    enum GetListError: Error {
-        case invalidURL
-        case missingData
-        case unexpectedError(error: String)
-    }
-    
-    static func getList(offset: Int = 0,
-                        limit:Int = 20,
+    static func getList(offset: Int,
+                        limit:Int,
                         completion: @escaping (Result<ListModel, GetListError>) -> Void) {
         
         var components = URLComponents()
         components.scheme = "https"
         components.host = "testnets-api.opensea.io"
         components.path = "/api/v1/assets"
-
+        
         components.queryItems = [
             URLQueryItem(name: "owner", value: "0x85fD692D2a075908079261F5E351e7fE0267dB02"),
             URLQueryItem(name: "offset", value: String(offset)),
             URLQueryItem(name: "limit", value: String(limit))
         ]
-                                
+        
         guard let url = components.url else {
             DispatchQueue.main.async {
                 completion(.failure(GetListError.invalidURL))
@@ -49,8 +55,6 @@ struct GetListService {
                 return
             }
             
-            // TODO
-            // handle status 200 but no data
             guard let data = data else {
                 DispatchQueue.main.async {
                     completion(.failure(GetListError.missingData))

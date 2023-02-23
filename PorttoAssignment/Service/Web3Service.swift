@@ -8,7 +8,11 @@
 import Foundation
 import web3
 
-struct Web3Service {
+protocol Web3ServiceProtocol {
+    static func getAddressBalance() async -> String?
+}
+
+struct Web3Service: Web3ServiceProtocol {
     
     static func getAddressBalance() async -> String? {
         
