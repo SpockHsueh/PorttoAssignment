@@ -19,15 +19,16 @@
 		6A4EE75729A3868E00BCF323 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EE75629A3868E00BCF323 /* CollectionVC.swift */; };
 		6A4EE75929A3AC0600BCF323 /* CollectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EE75829A3AC0600BCF323 /* CollectionCoordinator.swift */; };
 		6A4EE75B29A3ACD800BCF323 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4EE75A29A3ACD800BCF323 /* CollectionViewModel.swift */; };
+		6ABE900129A51DA100B86006 /* Web3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE900029A51DA100B86006 /* Web3Service.swift */; };
+		6ABE900729A525E200B86006 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = 6ABE900629A525E200B86006 /* web3.swift */; };
 		6AC3130929A25B2900EE7BCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130829A25B2900EE7BCA /* AppDelegate.swift */; };
 		6AC3130B29A25B2900EE7BCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */; };
-		6AC3130D29A25B2900EE7BCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3130C29A25B2900EE7BCA /* ViewController.swift */; };
 		6AC3131029A25B2900EE7BCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AC3130E29A25B2900EE7BCA /* Main.storyboard */; };
 		6AC3131229A25B2D00EE7BCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC3131129A25B2D00EE7BCA /* Assets.xcassets */; };
 		6AC3131529A25B2D00EE7BCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AC3131329A25B2D00EE7BCA /* LaunchScreen.storyboard */; };
 		6AC3131E29A25C9300EE7BCA /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3131D29A25C9300EE7BCA /* ListVC.swift */; };
 		6AC3132129A25CA900EE7BCA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3132029A25CA900EE7BCA /* Coordinator.swift */; };
-		6AC3132329A25CFC00EE7BCA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3132229A25CFC00EE7BCA /* HomeCoordinator.swift */; };
+		6AC3132329A25CFC00EE7BCA /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3132229A25CFC00EE7BCA /* ListCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,17 +44,17 @@
 		6A4EE75629A3868E00BCF323 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		6A4EE75829A3AC0600BCF323 /* CollectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCoordinator.swift; sourceTree = "<group>"; };
 		6A4EE75A29A3ACD800BCF323 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		6ABE900029A51DA100B86006 /* Web3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Service.swift; sourceTree = "<group>"; };
 		6AC3130529A25B2900EE7BCA /* PorttoAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PorttoAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC3130829A25B2900EE7BCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6AC3130C29A25B2900EE7BCA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6AC3130F29A25B2900EE7BCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6AC3131129A25B2D00EE7BCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AC3131429A25B2D00EE7BCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AC3131629A25B2D00EE7BCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AC3131D29A25C9300EE7BCA /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		6AC3132029A25CA900EE7BCA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		6AC3132229A25CFC00EE7BCA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		6AC3132229A25CFC00EE7BCA /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ABE900729A525E200B86006 /* web3.swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				6A2B283A29A27B6C00891657 /* GetListService.swift */,
+				6ABE900029A51DA100B86006 /* Web3Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -139,7 +142,6 @@
 				6AC3130A29A25B2900EE7BCA /* SceneDelegate.swift */,
 				6A2B282F29A267AE00891657 /* RowViewModel.swift */,
 				6A2B283C29A2EE3800891657 /* ObserableObject.swift */,
-				6AC3130C29A25B2900EE7BCA /* ViewController.swift */,
 				6AC3130E29A25B2900EE7BCA /* Main.storyboard */,
 				6AC3131129A25B2D00EE7BCA /* Assets.xcassets */,
 				6AC3131329A25B2D00EE7BCA /* LaunchScreen.storyboard */,
@@ -162,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				6AC3132029A25CA900EE7BCA /* Coordinator.swift */,
-				6AC3132229A25CFC00EE7BCA /* HomeCoordinator.swift */,
+				6AC3132229A25CFC00EE7BCA /* ListCoordinator.swift */,
 				6A4EE75829A3AC0600BCF323 /* CollectionCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -184,6 +186,9 @@
 			dependencies = (
 			);
 			name = PorttoAssignment;
+			packageProductDependencies = (
+				6ABE900629A525E200B86006 /* web3.swift */,
+			);
 			productName = PorttoAssignment;
 			productReference = 6AC3130529A25B2900EE7BCA /* PorttoAssignment.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +217,9 @@
 				Base,
 			);
 			mainGroup = 6AC312FC29A25B2900EE7BCA;
+			packageReferences = (
+				6ABE900529A525E200B86006 /* XCRemoteSwiftPackageReference "web3" */,
+			);
 			productRefGroup = 6AC3130629A25B2900EE7BCA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,7 +250,7 @@
 				6A2B284029A3571200891657 /* AsyncImage.swift in Sources */,
 				6A2B283529A26C2E00891657 /* ListViewModel.swift in Sources */,
 				6A4EE75729A3868E00BCF323 /* CollectionVC.swift in Sources */,
-				6AC3130D29A25B2900EE7BCA /* ViewController.swift in Sources */,
+				6ABE900129A51DA100B86006 /* Web3Service.swift in Sources */,
 				6A2B283029A267AE00891657 /* RowViewModel.swift in Sources */,
 				6A2B282E29A2615200891657 /* ListCell.swift in Sources */,
 				6A4EE75B29A3ACD800BCF323 /* CollectionViewModel.swift in Sources */,
@@ -256,7 +264,7 @@
 				6AC3130B29A25B2900EE7BCA /* SceneDelegate.swift in Sources */,
 				6A2B283829A26D6900891657 /* ListModel.swift in Sources */,
 				6A2B284229A3573D00891657 /* DownloadImage.swift in Sources */,
-				6AC3132329A25CFC00EE7BCA /* HomeCoordinator.swift in Sources */,
+				6AC3132329A25CFC00EE7BCA /* ListCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +478,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6ABE900529A525E200B86006 /* XCRemoteSwiftPackageReference "web3" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argentlabs/web3.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6ABE900629A525E200B86006 /* web3.swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6ABE900529A525E200B86006 /* XCRemoteSwiftPackageReference "web3" */;
+			productName = web3.swift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6AC312FD29A25B2900EE7BCA /* Project object */;
 }

@@ -40,6 +40,4 @@ class CollectionCoordinator: Coordinator {
     deinit {
         print("CollectionCoordinator deinit")
     }
-    
-    
 }

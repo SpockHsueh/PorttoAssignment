@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// TODO
 protocol Event {}
 
 enum ListEvent: Event {

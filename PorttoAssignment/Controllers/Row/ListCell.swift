@@ -1,5 +1,5 @@
 //
-//  HomeCell.swift
+//  ListCell.swift
 //  PorttoAssignment
 //
 //  Created by 薛宇振 on 2023/2/19.
@@ -12,8 +12,9 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     
     // MARK: - Properties
     
-    static let identifier = "HomeCell"
+    static let identifier = "ListCell"
     private var dataModel: ListCellDataModel?
+    private var prepareReuse = false
     
     // MARK: - UI Component
     
@@ -66,10 +67,18 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         }
         self.dataModel = dataModel
         self.nameLabel.text = dataModel.name
+        self.prepareReuse = false
         
         dataModel.image.startDownload()
         
         dataModel.image.completeDownload = { [weak self] (image, url) in
+            
+            if self?.prepareReuse == true {
+                self?.imageView.image = nil
+                self?.webView.stopLoading()
+                return
+            }
+            
             if (image == nil) {
                 self?.webView.isHidden = false
                 self?.imageView.isHidden = true
@@ -112,8 +121,8 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.prepareReuse = true
         dataModel?.image.completeDownload = nil
-        self.imageView.image = nil
     }
         
 }

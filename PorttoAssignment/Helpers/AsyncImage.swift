@@ -21,7 +21,7 @@ class AsyncImage {
     var completeDownload: ((UIImage?, URL) -> Void)?
 
     init(url: String,
-         placeholderImage: UIImage = #imageLiteral(resourceName: "placeholderImage") ,
+         placeholderImage: UIImage = #imageLiteral(resourceName: "placeholderImage"),
          imageDownloadHelper: ImageDownloadHelperProtocol = DownloadImage()) {
         self.url = URL(string: url)!
         self.placeholder = placeholderImage

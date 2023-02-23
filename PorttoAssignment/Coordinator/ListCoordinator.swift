@@ -1,5 +1,5 @@
 //
-//  HomeCoordinator.swift
+//  ListCoordinator.swift
 //  PorttoAssignment
 //
 //  Created by 薛宇振 on 2023/2/19.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeCoordinator: Coordinator {
+class ListCoordinator: Coordinator {
     
     var parentCoordinator: Coordinator?
     
@@ -39,7 +39,7 @@ class HomeCoordinator: Coordinator {
     }
     
     deinit {
-        print("HomeCoordinator deinit")
+        print("ListCoordinator deinit")
     }
 }
 

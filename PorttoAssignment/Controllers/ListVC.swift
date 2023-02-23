@@ -1,5 +1,5 @@
 //
-//  HomeVC.swift
+//  ListVC.swift
 //  PorttoAssignment
 //
 //  Created by 薛宇振 on 2023/2/19.
@@ -13,7 +13,7 @@ class ListVC: UIViewController, Coordinating {
     // MARK: - Properties
     
     var coordinator: Coordinator?
-    private let viewModel = ListViewModel()
+    let viewModel = ListViewModel(getListService: GetListService.self, we3Service: Web3Service.self)
     private var cellData: [Assets] = []
     
     // MARK: - UI Component
@@ -35,7 +35,7 @@ class ListVC: UIViewController, Coordinating {
         return collectionView
     }()
     
-    lazy var amountLabel: UILabel = {
+    lazy var balenceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Loading..."
@@ -62,28 +62,31 @@ class ListVC: UIViewController, Coordinating {
         viewModel.getList()        
         Task {
             let newValue = await viewModel.getBalence() ?? "0"
-            amountLabel.text = "$ \(newValue)"
+            balenceLabel.text = "$ \(newValue)"
         }
     }
     
     // MARK: - Private Func
     
     private func setupConstraints() {
-        view.addSubview(amountLabel)
+        view.addSubview(balenceLabel)
         view.addSubview(collectionView)
         view.addSubview(loadingIdicator)
+        
+        let guide = view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
             loadingIdicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIdicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            amountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            amountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            balenceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            balenceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            balenceLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 10),
+            balenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: amountLabel.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: balenceLabel.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navVC = UINavigationController()
         
-        let coordinator = HomeCoordinator()
+        let coordinator = ListCoordinator()
         coordinator.navigationController = navVC
         
         let window = UIWindow(windowScene: windowScene)
