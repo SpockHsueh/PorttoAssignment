@@ -86,7 +86,6 @@ class CollectionVC: UIViewController, Coordinating {
         setupConstraints()
         setupBinders()
         viewModel?.setup()
-        
     }
     
     deinit {
@@ -133,28 +132,32 @@ class CollectionVC: UIViewController, Coordinating {
                     self?.webView.isHidden = false
                     self?.imageView.isHidden = true
                     self?.webView.load(URLRequest(url: url))
+                    self?.resizeWebView()
                 } else {
                     self?.imageView.isHidden = false
                     self?.webView.isHidden = true
-                    if let newSize = self?.resizeImage(image: image) {
-                        self?.imageView.frame.size = newSize
-                        self?.imageView.image = image
-                        self?.scrollStackViewContainer.sizeToFit()
-                        self?.scrollStackViewContainer.layoutIfNeeded()
-                    }
+                    self?.imageView.image = image
+                    self?.resizeImage(image: image)
                 }
+                self?.scrollStackViewContainer.sizeToFit()
+                self?.view.layoutIfNeeded()
             }
         }
     }
+    
+    private func resizeWebView() {
+        let myWebViewWidth = scrollStackViewContainer.frame.width - 160
+        let myWebViewHeight = CGFloat(100)
+        let myViewWidth = scrollStackViewContainer.frame.width
+        
+        let ratio = myViewWidth / myWebViewWidth
+        let scaledHeight = myWebViewHeight * ratio
+        webView.heightAnchor.constraint(equalToConstant: scaledHeight).isActive = true
+    }
         
     private func resizeImage(image: UIImage?) -> CGSize {
-        
-        guard let image = image else {
-            return CGSize(width: 80, height: 80)
-        }
-        
         let myImageWidth = scrollStackViewContainer.frame.width - 160
-        let myImageHeight = image.size.height
+        let myImageHeight = CGFloat(100)
         let myViewWidth = scrollStackViewContainer.frame.width
         
         let ratio = myViewWidth/myImageWidth
