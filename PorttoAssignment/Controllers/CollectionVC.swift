@@ -155,7 +155,7 @@ class CollectionVC: UIViewController, Coordinating {
         webView.heightAnchor.constraint(equalToConstant: scaledHeight).isActive = true
     }
         
-    private func resizeImage(image: UIImage?) -> CGSize {
+    private func resizeImage(image: UIImage?) {
         let myImageWidth = scrollStackViewContainer.frame.width - 160
         let myImageHeight = CGFloat(100)
         let myViewWidth = scrollStackViewContainer.frame.width
@@ -163,8 +163,6 @@ class CollectionVC: UIViewController, Coordinating {
         let ratio = myViewWidth/myImageWidth
         let scaledHeight = myImageHeight * ratio
         imageView.heightAnchor.constraint(equalToConstant: scaledHeight).isActive = true
-        
-        return CGSize(width: myViewWidth, height: scaledHeight)
     }
     
     private func setupConstraints() {
