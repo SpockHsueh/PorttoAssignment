@@ -28,10 +28,12 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.scrollView.isScrollEnabled = false
         webView.contentMode = .scaleAspectFit
         webView.backgroundColor = .clear
         webView.isHidden = true
+        webView.navigationDelegate = self
+        webView.scrollView.delegate = self
+        webView.isUserInteractionEnabled = false
         return webView
     }()
     
@@ -49,6 +51,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupConstraints()
+        webView.scrollView.setContentOffset(.init(x: 1000, y: 1000), animated: false)
     }
     
     required init?(coder: NSCoder) {
@@ -71,6 +74,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
                 self?.webView.isHidden = false
                 self?.imageView.isHidden = true
                 self?.webView.load(URLRequest(url: url))
+                self?.webView.scrollView.layoutIfNeeded()
             } else {
                 self?.imageView.isHidden = false
                 self?.webView.isHidden = true
@@ -109,6 +113,13 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     override func prepareForReuse() {
         super.prepareForReuse()
         dataModel?.image.completeDownload = nil
+        self.imageView.image = nil
     }
         
+}
+
+extension ListCell: WKNavigationDelegate, UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        webView.scrollView.setContentOffset(.init(x: webView.scrollView.contentSize.width / 5.5, y: webView.scrollView.contentSize.height / 5), animated: false)
+    }
 }
