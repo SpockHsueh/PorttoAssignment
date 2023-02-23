@@ -115,7 +115,7 @@ class CollectionVC: UIViewController, Coordinating {
             if let data = data {
                 self?.nameLabel.text = data.name
                 self?.descriptionLabel.text = data.description
-                self?.title = "Collection.\(data.name)"
+                self?.title = data.collection.name
                 self?.permalink = URL(string: data.permalink)
             }
         }
@@ -128,11 +128,19 @@ class CollectionVC: UIViewController, Coordinating {
             
             asyncImage.startDownload()
             asyncImage.completeDownload = { (image, url) in
-                if (image == nil) {
+                
+                if (image == nil && url == URL(string: "nil")) {
+                    self?.imageView.isHidden = false
+                    self?.webView.isHidden = true
+                    self?.imageView.image = UIImage(named: "placeholderImage")
+                    self?.resizeImage(image: image)
+                    
+                } else if (image == nil) {
                     self?.webView.isHidden = false
                     self?.imageView.isHidden = true
                     self?.webView.load(URLRequest(url: url))
                     self?.resizeWebView()
+                    
                 } else {
                     self?.imageView.isHidden = false
                     self?.webView.isHidden = true

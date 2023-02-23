@@ -40,6 +40,7 @@ class ListViewModel {
                 case .missingData: errorMessage = "Missing Data"
                 }
                 self?.getListErrorDescription.value = errorMessage
+                self?.isLoading.value = false
             case .success(let value):
                 self?.listValue.value = value.assets
             }

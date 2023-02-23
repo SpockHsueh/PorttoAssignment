@@ -67,19 +67,16 @@ class ListCell: UICollectionViewCell, CellConfigurable {
         }
         self.dataModel = dataModel
         self.nameLabel.text = dataModel.name
-        self.prepareReuse = false
         
         dataModel.image.startDownload()
         
         dataModel.image.completeDownload = { [weak self] (image, url) in
             
-            if self?.prepareReuse == true {
-                self?.imageView.image = nil
-                self?.webView.stopLoading()
-                return
-            }
-            
-            if (image == nil) {
+            if (image == nil && url == URL(string: "nil")) {
+                self?.imageView.isHidden = false
+                self?.webView.isHidden = true
+                self?.imageView.image = UIImage(named: "placeholderImage")
+            } else if (image == nil) {
                 self?.webView.isHidden = false
                 self?.imageView.isHidden = true
                 self?.webView.load(URLRequest(url: url))
@@ -90,6 +87,8 @@ class ListCell: UICollectionViewCell, CellConfigurable {
                 self?.imageView.image = image
             }
         }
+        
+        setNeedsLayout()
     }
     
     // MARK: - private Func
@@ -121,7 +120,7 @@ class ListCell: UICollectionViewCell, CellConfigurable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.prepareReuse = true
+        imageView.image = UIImage(named: "placeholderImage")
         dataModel?.image.completeDownload = nil
     }
         

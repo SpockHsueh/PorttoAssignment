@@ -108,7 +108,7 @@ class ListVC: UIViewController, Coordinating {
         viewModel.listValue.bind { [weak self] listValue in
             if !listValue.isEmpty {
                 self?.cellData.append(contentsOf: listValue)
-                self?.collectionView.reloadData()                
+                self?.collectionView.reloadData()
             }
         }
         
@@ -142,7 +142,7 @@ extension ListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         if (loadingIdicator.isAnimating) {
             return
         }
-        if indexPath.row == cellData.count - 1 {
+        if indexPath.row >= cellData.count - 1 {
             viewModel.getList()
         }
     }
