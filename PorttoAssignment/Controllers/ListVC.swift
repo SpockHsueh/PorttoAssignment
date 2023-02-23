@@ -38,7 +38,7 @@ class ListVC: UIViewController, Coordinating {
     lazy var amountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$100"
+        label.text = "Loading..."
         label.font = UIFont.systemFont(ofSize: 40)
         label.textAlignment = .left
         return label
@@ -59,7 +59,11 @@ class ListVC: UIViewController, Coordinating {
         view.backgroundColor = .white
         setupConstraints()
         setupBinders()
-        viewModel.getList()
+        viewModel.getList()        
+        Task {
+            let newValue = await viewModel.getBalence() ?? "0"
+            amountLabel.text = "$ \(newValue)"
+        }
     }
     
     // MARK: - Private Func
@@ -106,7 +110,9 @@ class ListVC: UIViewController, Coordinating {
         }
         
         viewModel.getListErrorDescription.bind { error in
-            print("get list error:", error?.debugDescription)
+            if let error = error {
+                print("get list error:", error.debugDescription)
+            }
         }
     }
 }
